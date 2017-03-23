@@ -11,7 +11,23 @@ import { ProfileService } from "../../services/profile.service";
 
 export class SidebarComponent implements OnInit {
     profiles: Profile[];
-    constructor(private _profileService: ProfileService, private _weatherService: WeatherService) {}
+    
+    constructor(
+        private _profileService: ProfileService, 
+        private _weatherService: WeatherService
+    ) {}
+
+    private fetchWeatherItem(city: string) {
+        this._weatherService
+            .searchWeatherData(city)
+            .retry()
+            .subscribe(
+                data => {
+                    let item = this._weatherService.buildWeatherItem(data);
+                    this._weatherService.addWeatherItem(item);
+                }
+            )
+    }
     
     ngOnInit() {
         this.profiles = this._profileService.getProfiles();
@@ -27,5 +43,15 @@ export class SidebarComponent implements OnInit {
         this._profileService.saveProfile(cities);
     }
     
+    onLoadProfile(profile: Profile) {
+        this._weatherService.clearWeatherItems();
+        
+        profile.cities.forEach((city) => {
+            this.fetchWeatherItem(city);
+        });
+    }
+
+
+
     onDeleteProfile() {}
 }

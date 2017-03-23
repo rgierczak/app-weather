@@ -20,6 +20,18 @@ const KEY = ''; //Add your APPID here!
         WEATHER_ITEMS.push(weatherItem);
     }
     
+    clearWeatherItems() {
+        WEATHER_ITEMS.splice(0);
+    }
+
+    buildWeatherItem(data: any) {
+        return new WeatherItem(
+            data.name,
+            data.weather[0].description,
+            data.main.temp
+        )
+    }
+    
     searchWeatherData(cityName: string): Observable<any> {
         let url = API_URL + cityName + '&APPID=' + KEY + '&units=' + UNITS_TYPE;
         
