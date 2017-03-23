@@ -1,4 +1,4 @@
-import { WeatherItem } from '../weather-item/weather-item';
+import { WeatherItem } from '../components/weather-item/weather-item';
 
 export const WEATHER_ITEMS: WeatherItem[] = [
     new WeatherItem('London', 'Rainy', 4),
