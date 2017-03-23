@@ -50,8 +50,9 @@ export class SidebarComponent implements OnInit {
             this.fetchWeatherItem(city);
         });
     }
-
-
-
-    onDeleteProfile() {}
+    
+    onDeleteProfile(event: Event, profile: Profile) {
+        event.stopPropagation();
+        this._profileService.deleteProfile(profile);
+    }
 }
