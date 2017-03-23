@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
 import { WeatherItem } from '../weather-item/weather-item';
+import { Subject } from "rxjs";
 
 @Component({
     selector: 'weather-search',
@@ -9,23 +9,42 @@ import { WeatherItem } from '../weather-item/weather-item';
     styleUrls: ['./weather-search.component.css']
 })
 
-export class WeatherSearchComponent {
-    city: String = null;
-
+export class WeatherSearchComponent implements OnInit {
+    private weatherData: any = {};
+    private searchStream = new Subject<string>();
+    
     constructor(private _weatherService: WeatherService){}
     
-    onSubmit(form: FormGroup) {
-        this._weatherService.searchWeatherData(form.value.city)
-            .subscribe(
-                data => {
-                    let item = this.buildWeatherItem(data);
-                    this._weatherService.addWeatherItem(item);
-                }
-            );
-        
+    onSubmit() {
+        let item = this.buildWeatherItem();
+        this._weatherService.addWeatherItem(item);
     }
     
-    buildWeatherItem(data: any) {
+    ngOnInit() {
+        this.searchStream
+            .debounceTime(300)
+            .distinctUntilChanged()
+            .switchMap(
+                (input:string) => this._weatherService.searchWeatherData(input))
+            .subscribe(
+                data => this.setWeatherData(data)
+            );
+    }
+    
+    setWeatherData(data: object) {
+        this.weatherData = data;
+    }
+    
+    onSearchLocation(cityName: string) {
+        console.log(cityName);
+        
+        this.searchStream
+            .next(cityName);
+    }
+    
+    buildWeatherItem() {
+        let data = this.weatherData;
+        
         return new WeatherItem(
             data.name,
             data.weather[0].description,
