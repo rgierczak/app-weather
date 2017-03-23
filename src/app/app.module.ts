@@ -10,6 +10,7 @@ import { WeatherListComponent } from './components/weather-list/weather-list.com
 import { WeatherSearchComponent } from './components/weather-search/weather-search.component';
 
 import { WeatherService } from './services/weather.service';
+import { ProfileService } from './services/profile.service';
 
 @NgModule({
     imports: [
@@ -25,7 +26,7 @@ import { WeatherService } from './services/weather.service';
         WeatherSearchComponent
     ],
     bootstrap: [AppComponent],
-    providers: [WeatherService]
+    providers: [WeatherService, ProfileService]
 })
 
 export class AppModule {}
