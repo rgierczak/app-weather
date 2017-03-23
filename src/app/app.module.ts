@@ -13,17 +13,17 @@ import { WeatherService } from './services/weather.service';
 import { ProfileService } from './services/profile.service';
 
 @NgModule({
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpModule
-    ],
     declarations: [
         AppComponent,
         SidebarComponent,
         WeatherItemComponent,
         WeatherListComponent,
         WeatherSearchComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule
     ],
     bootstrap: [AppComponent],
     providers: [WeatherService, ProfileService]

@@ -35,8 +35,6 @@ export class WeatherSearchComponent implements OnInit {
     }
     
     onSearchLocation(cityName: string) {
-        console.log(cityName);
-        
         this.searchStream
             .next(cityName);
     }

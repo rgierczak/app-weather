@@ -1,4 +1,4 @@
-import { Profile } from '../common/profile';
+import { Profile } from '../models/profile.model';
 
 export class ProfileService {
     private profiles: Profile[] = [

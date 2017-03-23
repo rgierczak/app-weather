@@ -1,8 +1,8 @@
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { WEATHER_ITEMS } from '../common/weather.data';
-import { WeatherItem } from '../components/weather-item/weather-item';
+import { WEATHER_ITEMS } from '../models/weather-list.model';
+import { WeatherItem } from '../models/weather-item.model';
 import 'rxjs/Rx';
 
 const UNITS_TYPE = 'metric';
