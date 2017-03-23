@@ -1,8 +1,8 @@
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { WEATHER_ITEMS } from '../models/weather-list.model';
-import { WeatherItem } from '../models/weather-item.model';
+import { WeatherListModel } from '../models/weather-list.model';
+import { WeatherItemModel } from '../models/weather-item.model';
 import 'rxjs/Rx';
 
 const UNITS_TYPE = 'metric';
@@ -13,19 +13,19 @@ const KEY = ''; //Add your APPID here!
     constructor(private _http: Http) {}
     
     getWeatherItems() {
-        return WEATHER_ITEMS;
+        return WeatherListModel;
     }
     
-    addWeatherItem(weatherItem: WeatherItem) {
-        WEATHER_ITEMS.push(weatherItem);
+    addWeatherItem(weatherItem: WeatherItemModel) {
+        WeatherListModel.push(weatherItem);
     }
     
     clearWeatherItems() {
-        WEATHER_ITEMS.splice(0);
+        WeatherListModel.splice(0);
     }
 
     buildWeatherItem(data: any) {
-        return new WeatherItem(
+        return new WeatherItemModel(
             data.name,
             data.weather[0].description,
             data.main.temp

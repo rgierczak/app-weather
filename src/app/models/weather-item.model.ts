@@ -1,4 +1,4 @@
-export class WeatherItem {
+export class WeatherItemModel {
     constructor (
         public cityName: string, 
         public description: string,

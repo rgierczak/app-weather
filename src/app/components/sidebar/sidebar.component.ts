@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Profile } from '../../models/profile.model';
+import { ProfileModel } from '../../models/profile.model';
 import { WeatherService } from "../../services/weather.service";
 import { ProfileService } from "../../services/profile.service";
 
@@ -10,7 +10,7 @@ import { ProfileService } from "../../services/profile.service";
 })
 
 export class SidebarComponent implements OnInit {
-    profiles: Profile[];
+    profiles: ProfileModel[];
     
     constructor(
         private _profileService: ProfileService, 
@@ -43,7 +43,7 @@ export class SidebarComponent implements OnInit {
         this._profileService.saveProfile(cities);
     }
     
-    onLoadProfile(profile: Profile) {
+    onLoadProfile(profile: ProfileModel) {
         this._weatherService.clearWeatherItems();
         
         profile.cities.forEach((city) => {
@@ -51,7 +51,7 @@ export class SidebarComponent implements OnInit {
         });
     }
     
-    onDeleteProfile(event: Event, profile: Profile) {
+    onDeleteProfile(event: Event, profile: ProfileModel) {
         event.stopPropagation();
         this._profileService.deleteProfile(profile);
     }

@@ -1,3 +1,3 @@
-import { WeatherItem } from './weather-item.model';
+import { WeatherItemModel } from './weather-item.model';
 
-export const WEATHER_ITEMS: WeatherItem[] = [];
+export const WeatherListModel: WeatherItemModel[] = [];
