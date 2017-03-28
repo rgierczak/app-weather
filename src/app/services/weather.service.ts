@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 
 const UNITS_TYPE = 'metric';
 const API_URL = 'http://api.openweathermap.org/data/2.5/weather?q=';
-const KEY = ''; //Add your APPID here!
+const KEY = '5958d5f47c1c8b34a9f5124e3f2c4839';
 
 @Injectable() export class WeatherService {
     constructor(private _http: Http) {}
